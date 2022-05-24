@@ -17,7 +17,7 @@ namespace Persistence.Migrations
                     Title = table.Column<string>(type: "TEXT", nullable: true),
                     ActivityDate = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Category = table.Column<string>(type: "TEXT", nullable: true),
+                    Categoty = table.Column<string>(type: "TEXT", nullable: true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
                     Venue = table.Column<string>(type: "TEXT", nullable: true)
                 },
@@ -26,13 +26,13 @@ namespace Persistence.Migrations
                     table.PrimaryKey("PK_Activities", x => x.Id);
                 });  
 
-                migrationBuilder.RenameColumn("Categoty", "Activities", "Category","dbo");
+                //migrationBuilder.RenameColumn("Categoty", "Activities", "Category","dbo");
              
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn("Categoty", "Activities", "Category","dbo");
+            //migrationBuilder.RenameColumn("Categoty", "Activities", "Category","dbo");
 
             migrationBuilder.DropTable(
                 name: "Activities");

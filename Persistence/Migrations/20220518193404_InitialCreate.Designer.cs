@@ -28,7 +28,7 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("ActivityDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Category")
+                    b.Property<string>("Categoty")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("City")
