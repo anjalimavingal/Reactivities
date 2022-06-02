@@ -1,33 +1,35 @@
+import { observer } from "mobx-react-lite";
 import React, { ChangeEvent, useState } from "react";
 import { Button, Form, Segment } from "semantic-ui-react";
-import { Activity } from "../../../models/activity";
+//import { Activity } from "../../../models/activity";
+import { useStore } from "../../../stores/Store";
 
-interface Props {
-    activity: Activity | undefined;
-    closeForm: () => void;
-    createOrEdit: (activity: Activity) => void;
-    submitting: boolean;
-}
-const ActivityForm = ({
-    closeForm,
-    activity: selectedActivity,
-    createOrEdit,
-    submitting,
-}: Props) => {
-    const initialState = selectedActivity ?? {
-        id: "",
-        title: "",
-        activityDate: "",
-        description: "",
-        categoty: "",
-        city: "",
-        venue: "",
-    };
+const ActivityForm = () => {
+    const { activityStore } = useStore();
+    const {
+        selectedActivity,
+        closeForm,
+        createActivity,
+        updateActivity,
+        loading,
+    } = activityStore;
+    const initialState = selectedActivity
+        ? selectedActivity
+        : {
+              id: "",
+              title: "",
+              activityDate: "",
+              description: "",
+              categoty: "",
+              city: "",
+              venue: "",
+          };
 
     const [activity, setActivity] = useState(initialState);
 
     const handleSubmit = () => {
-        createOrEdit(activity);
+        activity.id ? updateActivity(activity) : createActivity(activity);
+        //createOrEdit(activity);
     };
 
     const handleInputChange = (
@@ -83,7 +85,7 @@ const ActivityForm = ({
                     positive
                     type="submit"
                     content="Submit"
-                    loading={submitting}
+                    loading={loading}
                 />
                 <Button
                     floated="right"
@@ -96,4 +98,4 @@ const ActivityForm = ({
     );
 };
 
-export default ActivityForm;
+export default observer(ActivityForm);

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./app/layout/style.css";
 import App from "./app/layout/App";
 import "semantic-ui-css/semantic.css";
+import { store, StoreContext } from "./app/stores/Store";
 
 // const root = ReactDOM.createRoot(
 //     document.getElementById("root") as HTMLElement
@@ -14,9 +15,9 @@ import "semantic-ui-css/semantic.css";
 // );
 
 ReactDOM.render(
-    <React.StrictMode>
+    <StoreContext.Provider value={store}>
         <App />
-    </React.StrictMode>,
+    </StoreContext.Provider>,
     document.getElementById("root")
 );
 
